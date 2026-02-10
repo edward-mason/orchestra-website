@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Turl Street Orchestra</title>
-    <!-- Link to external stylesheet -->
     <link rel="stylesheet" href="styles.css">
     <style>
         /* Internal CSS for basic styling */
@@ -17,9 +16,19 @@
         header {
             background: #003366; /* Dark blue background for header */
             color: #fff; /* White text color for contrast */
-            padding: 20px; /* Space inside the header */
+            padding: 30px 20px; /* Increased padding */
             text-align: center; /* Center-align text in header */
         }
+        
+        /* New styling for the logo */
+        .logo {
+            width: 120px; /* Set a reasonable width for the logo */
+            height: auto;
+            border-radius: 50%; /* Makes the circular image look clean */
+            margin-bottom: 15px; /* Space between logo and title */
+            border: 2px solid white; /* Optional: adds a nice white border */
+        }
+
         .container {
             max-width: 800px; /* Set maximum width for container */
             margin: auto; /* Center container horizontally */
@@ -28,18 +37,35 @@
             border-radius: 8px; /* Rounded corners for the container */
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
         }
-        h1, h2 {
+        
+        /* General styling for section headings */
+        h2 {
             color: #003366; /* Consistent dark blue for headings */
         }
+
+        /* Specific styling for the Header Title to make it white */
+        header h1 {
+            color: #ffffff; 
+            margin: 0;
+            font-size: 2.5em;
+        }
+
         .btn {
             display: inline-block; /* Make button inline but allow padding */
             padding: 10px 20px; /* Space inside the button */
-            margin: 10px 0; /* Margin above and below the button */
+            margin: 10px 5px; /* Margin surrounding the buttons */
             background: #003366; /* Dark blue background for button */
             color: #fff; /* White text color for button */
             text-decoration: none; /* Remove underline from button link */
             border-radius: 5px; /* Rounded corners for button */
+            transition: background 0.3s; /* Smooth hover transition */
         }
+        
+        /* Hover effect for buttons */
+        .btn:hover {
+            background-color: #004080;
+        }
+
         footer {
             text-align: center; /* Center-align footer text */
             margin-top: 20px; /* Space above the footer */
@@ -48,48 +74,50 @@
     </style>
 </head>
 <body>
-    <!-- Header Section -->
     <header>
-        <h1>Welcome to Turl Street Orchestra</h1>
+        <img src="462661142_576296568172238_7560912236331560459_n.jpg" alt="Turl Street Orchestra Logo" class="logo">
+        <h1>Turl Street Orchestra</h1>
         <p>Oxford's premier non-auditioning student orchestra</p>
     </header>
     
-    <!-- Main Content Container -->
     <div class="container">
-        <!-- About Section -->
         <section id="about">
             <h2>About Us</h2>
             <p>The Turl Street Orchestra (TSO) is a vibrant, non-auditioning student orchestra that rehearses weekly at Exeter College Chapel in Oxford. We welcome musicians of all abilities to join us every Friday evening during term time. Our mission is to bring together students from diverse musical backgrounds to enjoy playing classical music in a friendly, relaxed setting.</p>
         </section>
 
-        <!-- Rehearsals Section -->
         <section id="rehearsals">
             <h2>Rehearsals</h2>
             <p>Rehearsals take place at Exeter College Chapel on Fridays from 7:30 PM to 10:00 PM during term time (Weeks 1 to 7). We focus on playing beautiful classical pieces, such as Gluck's Iphigenia in Aulis or Mozart's Symphony No. 38, while ensuring a fun and collaborative environment. Snacks, including biscuits, are always available during breaks!</p>
         </section>
 
-        <!-- Concerts Section -->
         <section id="concerts">
             <h2>Concerts</h2>
             <p>TSO performs three concerts per year, one at the end of each academic term. The concerts are held at Exeter College Chapel and are completely free to attend. Our concerts are approximately one hour in length and provide an opportunity for the entire community to come and enjoy our music. Keep an eye on our website and social media for concert dates!</p>
         </section>
 
-        <!-- Join Section -->
         <section id="join">
             <h2>Join Us</h2>
             <p>We are always looking for new members to join our orchestra! No auditions are required—just bring your enthusiasm and your instrument. Whether you're a seasoned performer or haven't picked up your instrument in years, we'd love to have you play with us.</p>
-            <!-- Join Button -->
             <a href="mailto:oxfordturlstreetorchestra@gmail.com" class="btn">Join the Orchestra</a>
         </section>
 
-        <!-- Support Section -->
+        <section id="connect">
+            <h2>Stay Connected</h2>
+            <p>Follow us on social media for the latest updates, photos, and event announcements, or join our mailing list.</p>
+            <div style="text-align: center;">
+                <a href="https://forms.gle/QKw5AsoD8uAVzm1Q8" class="btn" target="_blank">Sign up to Mailing List</a>
+                <a href="https://www.facebook.com/share/g/Zo1qASrAPHELR2hx/?mibextid=K35XfP" class="btn" target="_blank">Join Facebook Group</a>
+                <a href="https://www.instagram.com/turlstreetorchestra/" class="btn" target="_blank">Instagram</a>
+            </div>
+        </section>
+
         <section id="support">
             <h2>Support Us</h2>
             <p>Our orchestra relies on the support of our audience and community. We accept donations during our concerts, which help fund essentials such as venue bookings, music, and our Freshers' Fair stall. Come to our concerts and donate to keep our music playing!</p>
         </section>
     </div>
 
-    <!-- Footer Section -->
     <footer>
         <p>&copy; 2024 Turl Street Orchestra. All rights reserved.</p>
     </footer>
