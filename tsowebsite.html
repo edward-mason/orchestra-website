@@ -4,94 +4,381 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Turl Street Orchestra</title>
-    <!-- Link to external stylesheet -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Internal CSS for basic styling */
+        /* ===== RESET & VARIABLES ===== */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --navy-deep:   #000814;
+            --navy-dark:   #001d3d;
+            --navy-mid:    #003566;
+            --navy-light:  #0077b6;
+            --navy-glow:   #00b4d8;
+            --white:       #ffffff;
+            --off-white:   #e2e8f4;
+            --silver:      #b8c4d8;
+            --gold:        #ffd700;
+            --gold-dark:   #b8960c;
+            --black:       #000000;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: Arial, sans-serif; /* Use a clean, easy-to-read font */
-            background-color: #f0f0f0; /* Light grey background for better contrast */
-            color: #333; /* Dark grey text color for readability */
-            line-height: 1.6; /* Improve line spacing for better text legibility */
+            font-family: 'Raleway', Arial, sans-serif;
+            background-color: var(--navy-deep);
+            color: var(--off-white);
+            line-height: 1.75;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
+
+        /* ===== BACKGROUND ===== */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background:
+                radial-gradient(ellipse at 15% 50%, rgba(0, 53, 102, 0.45) 0%, transparent 55%),
+                radial-gradient(ellipse at 85% 15%, rgba(0, 119, 182, 0.2) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 85%, rgba(0, 29, 61, 0.7) 0%, transparent 55%),
+                linear-gradient(160deg, var(--navy-deep) 0%, #000f22 45%, var(--navy-dark) 100%);
+            pointer-events: none;
+            z-index: -2;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: repeating-linear-gradient(
+                transparent,
+                transparent 39px,
+                rgba(255, 255, 255, 0.025) 39px,
+                rgba(255, 255, 255, 0.025) 40px
+            );
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(0, 8, 20, 0.88);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(0, 119, 182, 0.25);
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0;
+            padding: 0 20px;
+        }
+
+        nav a {
+            color: var(--silver);
+            text-decoration: none;
+            padding: 15px 20px;
+            font-size: 0.78em;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-bottom: 2px solid transparent;
+            transition: color 0.3s ease, border-color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--white);
+            border-bottom-color: var(--gold);
+        }
+
+        /* ===== HEADER ===== */
         header {
-            background: #003366; /* Dark blue background for header */
-            color: #fff; /* White text color for contrast */
-            padding: 20px; /* Space inside the header */
-            text-align: center; /* Center-align text in header */
+            padding: 80px 20px 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
         }
-        .container {
-            max-width: 800px; /* Set maximum width for container */
-            margin: auto; /* Center container horizontally */
-            padding: 20px; /* Space inside the container */
-            background: #fff; /* White background for main content */
-            border-radius: 8px; /* Rounded corners for the container */
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -60%; left: -60%;
+            width: 220%; height: 220%;
+            background: radial-gradient(ellipse at center, rgba(0, 119, 182, 0.12) 0%, transparent 58%);
+            animation: pulse-glow 7s ease-in-out infinite;
+            pointer-events: none;
         }
-        h1, h2 {
-            color: #003366; /* Consistent dark blue for headings */
+
+        @keyframes pulse-glow {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50%       { transform: scale(1.12); opacity: 0.65; }
         }
+
+        .header-notes {
+            font-size: 1.6em;
+            letter-spacing: 10px;
+            color: var(--gold);
+            margin-bottom: 20px;
+            opacity: 0.75;
+        }
+
+        header h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(2.2em, 6vw, 3.8em);
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: 3px;
+            margin-bottom: 16px;
+            text-shadow: 0 0 50px rgba(0, 180, 216, 0.35), 0 2px 20px rgba(0,0,0,0.5);
+        }
+
+        header h1 .accent {
+            color: var(--gold);
+        }
+
+        .tagline {
+            font-size: 0.88em;
+            font-weight: 500;
+            color: var(--silver);
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-bottom: 44px;
+        }
+
+        .header-divider {
+            width: 90px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 0 auto;
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        main {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 28px 20px 70px;
+        }
+
+        /* ===== SECTION CARDS ===== */
+        section {
+            background: rgba(255, 255, 255, 0.035);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 18px;
+            padding: 42px 48px;
+            margin-bottom: 22px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+        }
+
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--gold) 0%, var(--navy-glow) 100%);
+            border-radius: 4px 0 0 4px;
+        }
+
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 24px 70px rgba(0, 0, 0, 0.45), 0 0 40px rgba(0, 119, 182, 0.12);
+            border-color: rgba(0, 119, 182, 0.28);
+        }
+
+        section h2 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.65em;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        section h2::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.12), transparent);
+        }
+
+        .section-icon {
+            color: var(--gold);
+            font-size: 0.9em;
+            opacity: 0.85;
+        }
+
+        section p {
+            color: var(--silver);
+            font-size: 0.96em;
+            font-weight: 400;
+        }
+
+        /* ===== BUTTON GROUP ===== */
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        /* ===== BUTTONS ===== */
         .btn {
-            display: inline-block; /* Make button inline but allow padding */
-            padding: 10px 20px; /* Space inside the button */
-            margin: 10px 0; /* Margin above and below the button */
-            background: #003366; /* Dark blue background for button */
-            color: #fff; /* White text color for button */
-            text-decoration: none; /* Remove underline from button link */
-            border-radius: 5px; /* Rounded corners for button */
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 13px 28px;
+            background: linear-gradient(135deg, var(--navy-mid) 0%, var(--navy-light) 100%);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 9px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 600;
+            font-size: 0.87em;
+            letter-spacing: 0.6px;
+            border: 1px solid rgba(0, 180, 216, 0.28);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
         }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 60%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.14), transparent);
+            transition: left 0.45s ease;
+        }
+
+        .btn:hover::after {
+            left: 160%;
+        }
+
+        .btn:hover {
+            background: linear-gradient(135deg, var(--navy-light) 0%, var(--navy-glow) 100%);
+            border-color: rgba(0, 180, 216, 0.55);
+            box-shadow: 0 8px 28px rgba(0, 119, 182, 0.38);
+            transform: translateY(-2px);
+            color: var(--white);
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 100%);
+            color: var(--navy-deep);
+            border-color: var(--gold);
+            font-weight: 700;
+        }
+
+        .btn-gold:hover {
+            background: linear-gradient(135deg, var(--gold) 0%, #ffe566 100%);
+            box-shadow: 0 8px 28px rgba(255, 215, 0, 0.38);
+            color: var(--navy-deep);
+            border-color: #ffe566;
+        }
+
+        /* ===== FOOTER ===== */
         footer {
-            text-align: center; /* Center-align footer text */
-            margin-top: 20px; /* Space above the footer */
-            color: #777; /* Light grey text color for footer */
+            text-align: center;
+            padding: 44px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            color: rgba(255, 255, 255, 0.28);
+            font-size: 0.82em;
+            letter-spacing: 1.5px;
+        }
+
+        .footer-notes {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+            opacity: 0.35;
+            letter-spacing: 6px;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 640px) {
+            nav { display: none; }
+            header { padding: 50px 16px 65px; }
+            section { padding: 28px 22px; }
+            .btn-group { flex-direction: column; }
+            .btn { justify-content: center; }
         }
     </style>
 </head>
 <body>
-    <!-- Header Section -->
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#about">About</a>
+        <a href="#rehearsals">Rehearsals</a>
+        <a href="#concerts">Concerts</a>
+        <a href="#join">Join</a>
+        <a href="#support">Support</a>
+    </nav>
+
+    <!-- Header -->
     <header>
-        <h1>Welcome to Turl Street Orchestra</h1>
-        <p>Oxford's premier non-auditioning student orchestra</p>
+        <div class="header-notes">♩ ♪ ♫ ♬</div>
+        <h1>Welcome to Turl Street <span class="accent">Orchestra</span></h1>
+        <p class="tagline">Oxford's Premier Non-Auditioning Student Orchestra</p>
+        <div class="header-divider"></div>
     </header>
-    
-    <!-- Main Content Container -->
-    <div class="container">
-        <!-- About Section -->
+
+    <main>
+        <!-- About -->
         <section id="about">
-            <h2>About Us</h2>
+            <h2><span class="section-icon">♪</span> About Us</h2>
             <p>The Turl Street Orchestra (TSO) is a vibrant, non-auditioning student orchestra that rehearses weekly at Exeter College Chapel in Oxford. We welcome musicians of all abilities to join us every Friday evening during term time. Our mission is to bring together students from diverse musical backgrounds to enjoy playing classical music in a friendly, relaxed setting.</p>
         </section>
 
-        <!-- Rehearsals Section -->
+        <!-- Rehearsals -->
         <section id="rehearsals">
-            <h2>Rehearsals</h2>
+            <h2><span class="section-icon">♩</span> Rehearsals</h2>
             <p>Rehearsals take place at Exeter College Chapel on Fridays from 7:30 PM to 10:00 PM during term time (Weeks 1 to 7). We focus on playing beautiful classical pieces, such as Gluck's Iphigenia in Aulis or Mozart's Symphony No. 38, while ensuring a fun and collaborative environment. Snacks, including biscuits, are always available during breaks!</p>
         </section>
 
-        <!-- Concerts Section -->
+        <!-- Concerts -->
         <section id="concerts">
-            <h2>Concerts</h2>
+            <h2><span class="section-icon">♫</span> Concerts</h2>
             <p>TSO performs three concerts per year, one at the end of each academic term. The concerts are held at Exeter College Chapel and are completely free to attend. Our concerts are approximately one hour in length and provide an opportunity for the entire community to come and enjoy our music. Keep an eye on our website and social media for concert dates!</p>
         </section>
 
-        <!-- Join Section -->
+        <!-- Join Us -->
         <section id="join">
-            <h2>Join Us</h2>
-            <p>We are always looking for new members to join our orchestra! No auditions are required—just bring your enthusiasm and your instrument. Whether you're a seasoned performer or haven't picked up your instrument in years, we'd love to have you play with us.</p>
-            <!-- Join Button -->
-            <a href="mailto:oxfordturlstreetorchestra@gmail.com" class="btn">Join the Orchestra</a>
+            <h2><span class="section-icon">♬</span> Join Us</h2>
+            <p>We are always looking for new members to join our orchestra! No auditions are required — just bring your enthusiasm and your instrument. Whether you're a seasoned performer or haven't picked up your instrument in years, we'd love to have you play with us.</p>
+            <div class="btn-group">
+                <a href="mailto:oxfordturlstreetorchestra@gmail.com" class="btn btn-gold">Join the Orchestra</a>
+            </div>
         </section>
 
-        <!-- Support Section -->
+        <!-- Support Us -->
         <section id="support">
-            <h2>Support Us</h2>
+            <h2><span class="section-icon">✦</span> Support Us</h2>
             <p>Our orchestra relies on the support of our audience and community. We accept donations during our concerts, which help fund essentials such as venue bookings, music, and our Freshers' Fair stall. Come to our concerts and donate to keep our music playing!</p>
         </section>
-    </div>
+    </main>
 
-    <!-- Footer Section -->
     <footer>
-        <p>&copy; 2024 Turl Street Orchestra. All rights reserved.</p>
+        <div class="footer-notes">♩ ♪ ♫ ♬</div>
+        <p>&copy; 2026 Turl Street Orchestra. All rights reserved.</p>
     </footer>
+
 </body>
 </html>
