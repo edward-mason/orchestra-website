@@ -1,6 +1,5 @@
 # Turl Street Orchestra (TSO) Website
 
-## Overview
 This repository contains the front-end website files and promotional assets for the **Turl Street Orchestra**, Oxford's premier non-auditioning student orchestra. The site serves as a central hub for prospective members, current musicians, and concert attendees to find information about rehearsals, concerts, and how to get involved.
 
 ## Project Files
